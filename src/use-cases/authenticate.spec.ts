@@ -5,7 +5,6 @@ import { hash } from 'bcryptjs'
 import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
 describe('Authenticate Use Case', () => {
-
   let useRepository: InMemoryUsersRepository
   let sut: AuthenticateUseCase
 
@@ -15,8 +14,6 @@ describe('Authenticate Use Case', () => {
   })
 
   it('should be able to authenticate', async () => {
-
-
     await useRepository.create({
       name: 'John John',
       email: 'Johndoe@example.com',
@@ -32,9 +29,7 @@ describe('Authenticate Use Case', () => {
   })
 
   it('should not be able to authenticate with wrong email', async () => {
-
-
-    expect(
+    await expect(
       async () =>
         await sut.execute({
           email: 'Johndoe@example.com',
@@ -44,15 +39,13 @@ describe('Authenticate Use Case', () => {
   })
 
   it('should not be able to authenticate with wrong password', async () => {
-
-
     await useRepository.create({
       name: 'John John',
       email: 'Johndoe@example.com',
       password_hash: await hash('123456', 6),
     })
 
-    expect(
+    await expect(
       async () =>
         await sut.execute({
           email: 'Johndoe@example.com',

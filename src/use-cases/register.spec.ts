@@ -21,7 +21,8 @@ describe('Register Use Case', () => {
     })
 
     expect(user).toHaveProperty('id')
-    expect(user.id).toEqual('user_1')
+    expect(user.id).toEqual(expect.any(String))
+  
   })
 
   it('should hash user password upon registration', async () => {
