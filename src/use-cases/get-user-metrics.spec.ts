@@ -3,22 +3,22 @@ import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-c
 import { GetMetricsUseCase } from './get-user-metrics'
 
 describe('Get metrics Use Case', () => {
-  let useRepository: InMemoryCheckInsRepository
+  let checkInsRepository: InMemoryCheckInsRepository
   let sut: GetMetricsUseCase
 
   beforeEach(async () => {
-    useRepository = new InMemoryCheckInsRepository()
-    sut = new GetMetricsUseCase(useRepository)
+    checkInsRepository = new InMemoryCheckInsRepository()
+    sut = new GetMetricsUseCase(checkInsRepository)
   })
 
   it('should be able to fecth check in count from metrics', async () => {
 
-    await useRepository.create({
+    await checkInsRepository.create({
       user_id: 'user_id_01',
       gym_id: 'any_gym_id_02',
       validated_at: new Date(),
     })
-    await useRepository.create({
+    await checkInsRepository.create({
       user_id: 'user_id_01',
       gym_id: 'any_gym_id_02',
       validated_at: new Date(),
