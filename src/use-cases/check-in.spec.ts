@@ -7,14 +7,14 @@ import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error
 import { MaxDistanceError } from './errors/max-distance-error'
 
 describe('Check-in Use Case', () => {
-  let useRepository: InMemoryCheckInsRepository
+  let checkInsRepository: InMemoryCheckInsRepository
   let gymsRepository: InMemoryGymsRepository
   let sut: CheckInUseCase
 
   beforeEach(async () => {
-    useRepository = new InMemoryCheckInsRepository()
+    checkInsRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
-    sut = new CheckInUseCase(useRepository, gymsRepository)
+    sut = new CheckInUseCase(checkInsRepository, gymsRepository)
 
     await gymsRepository.create({
       id: 'gym-01',

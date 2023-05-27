@@ -3,21 +3,21 @@ import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-c
 import { FetchUserCheckHistoryUseCase } from './fetch-user-check-ins-history'
 
 describe('Check-in Use Case', () => {
-  let useRepository: InMemoryCheckInsRepository
+  let checkInsRepository: InMemoryCheckInsRepository
   let sut: FetchUserCheckHistoryUseCase
 
   beforeEach(async () => {
-    useRepository = new InMemoryCheckInsRepository()
-    sut = new FetchUserCheckHistoryUseCase(useRepository)
+    checkInsRepository = new InMemoryCheckInsRepository()
+    sut = new FetchUserCheckHistoryUseCase(checkInsRepository)
   })
 
   it('should be able to fecth check in history', async () => {
-    await useRepository.create({
+    await checkInsRepository.create({
       user_id: 'user_id_01',
       gym_id: 'any_gym_id_02',
       validated_at: new Date(),
     })
-    await useRepository.create({
+    await checkInsRepository.create({
       user_id: 'user_id_01',
       gym_id: 'any_gym_id_02',
       validated_at: new Date(),
@@ -42,7 +42,7 @@ describe('Check-in Use Case', () => {
 
   it('should be able to fecth paginated check-in history', async () => {
     for (let i = 1; i <= 22; i++) {
-      await useRepository.create({
+      await checkInsRepository.create({
         user_id: 'user_id_01',
         gym_id: `any_gym_id_${i}`,
         validated_at: new Date(),
