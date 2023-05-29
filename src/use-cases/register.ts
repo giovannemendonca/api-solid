@@ -15,7 +15,9 @@ interface RegisterUseCaseResponse {
 export class RegisterUserCase {
   constructor(private useRepository: UsersRepository) {}
 
-  async execute(props: RegisterUseCaseRequest):Promise<RegisterUseCaseResponse> {
+  async execute(
+    props: RegisterUseCaseRequest
+  ): Promise<RegisterUseCaseResponse> {
     const { name, email, password } = props
     const password_hash = await hash(password, 6)
 
@@ -24,15 +26,14 @@ export class RegisterUserCase {
       throw new UserAlreadyExistsError()
     }
 
-
-    const user =  await this.useRepository.create({
+    const user = await this.useRepository.create({
       name,
-      email, 
-      password_hash
+      email,
+      password_hash,
     })
 
     return {
-      user
+      user,
     }
   }
 }
