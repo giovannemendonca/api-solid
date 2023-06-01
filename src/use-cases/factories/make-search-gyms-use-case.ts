@@ -1,9 +1,9 @@
 import { PrismaGymsRepository } from '@/repositories/prisma/prisma-gyms-repository'
-import { CreateGymUserCase } from '../create-gym'
+import { SearchGymsUseCase } from '../search-gyms'
 
 export function MakeSearchGymsUseCase() {
   const gymsRepository = new PrismaGymsRepository()
-  const useCase = new CreateGymUserCase(gymsRepository)
+  const useCase = new SearchGymsUseCase(gymsRepository)
 
   return useCase
 }
