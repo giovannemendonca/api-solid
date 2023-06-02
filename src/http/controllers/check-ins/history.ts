@@ -1,4 +1,4 @@
-import { MakeFetchUserCheckInsHistoryUseCase } from '@/use-cases/factories/make-fetch-user-check-ins-history-use-case'
+import { makeFetchUserCheckInsHistoryUseCase } from '@/use-cases/factories/make-fetch-user-check-ins-history-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
@@ -9,7 +9,7 @@ export async function history(request: FastifyRequest, reply: FastifyReply) {
 
   const { page } = checkInHistoryQuerySchema.parse(request.query)
 
-  const fecthUserCheckInsHistotyUseCase = MakeFetchUserCheckInsHistoryUseCase()
+  const fecthUserCheckInsHistotyUseCase = makeFetchUserCheckInsHistoryUseCase()
 
   const {checkIns} = await fecthUserCheckInsHistotyUseCase.execute({
     page,

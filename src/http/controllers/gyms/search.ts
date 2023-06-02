@@ -1,4 +1,4 @@
-import { MakeSearchGymsUseCase } from '@/use-cases/factories/make-search-gyms-use-case'
+import { makeSearchGymsUseCase } from '@/use-cases/factories/make-search-gyms-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
@@ -10,7 +10,7 @@ export async function search(request: FastifyRequest, reply: FastifyReply) {
 
   const { q, page } = searchGymsQuerySchema.parse(request.query)
 
-  const searchGymUseCase = MakeSearchGymsUseCase()
+  const searchGymUseCase = makeSearchGymsUseCase()
 
   const {gyms} = await searchGymUseCase.execute({
     page: page,

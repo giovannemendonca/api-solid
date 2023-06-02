@@ -1,4 +1,4 @@
-import { MakeCheckInUseCase } from '@/use-cases/factories/make-check-in-use-case'
+import { makeCheckInUseCase } from '@/use-cases/factories/make-check-in-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
@@ -20,7 +20,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
   const { gymId } = checkInParamsSchema.parse(request.params)
   const { latitude, longitude } = createCheckInBodySchema.parse(request.body)
 
-  const createCheckInUseCase = MakeCheckInUseCase()
+  const createCheckInUseCase = makeCheckInUseCase()
 
   await createCheckInUseCase.execute({
     gymId,
